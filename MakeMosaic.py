@@ -7,7 +7,7 @@ Created on Sat Oct 28 19:33:22 2023
 """
 
 from astropy.io import fits
-from astropy.coordinates import SkyCoord
+# from astropy.coordinates import SkyCoord
 from reproject.mosaicking import find_optimal_celestial_wcs, reproject_and_coadd
 from reproject import reproject_interp
 from astropy.wcs import WCS
@@ -17,8 +17,6 @@ fnames = ['Sh2-157_F1_PixelMath_astrometry.fits', 'Sh2-157_F2_PixelMath_astromet
 weights = ['Sh2-157_F1_PixelMath_astrometry.weight.fits', 'Sh2-157_F2_PixelMath_astrometry.weight.fits']
 
 hdus_3D = [fits.open(fn)[0] for fn in fnames]
-# wcs_out, shape_out = find_optimal_celestial_wcs(hdus, naxis=2)
-
 
 
 for color in range(3):
@@ -40,12 +38,3 @@ for color in range(3):
     hdul_mosaic = wcs_out.to_fits()
     hdul_mosaic[0].data = array
     hdul_mosaic.writeto(f'mosaic_{color:01d}.fits', overwrite=True)
-
-# w1 = WCS(hdus[0][0].header, naxis=2)
-# data2D=hdus_2D[0].data
-# plt.imshow(array)
-
-
-# hdul_2D = w1.to_fits()
-# hdul_2D[0].data = data2D
-# hdul_2D.writeto('new.fits', overwrite=True)
