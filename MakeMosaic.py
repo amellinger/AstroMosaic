@@ -13,7 +13,10 @@ from reproject import reproject_interp
 from astropy.wcs import WCS
 import matplotlib.pyplot as plt
 
+# Replace the file names with your own.
 fnames = ['Sh2-157_F1_PixelMath_astrometry.fits', 'Sh2-157_F2_PixelMath_astrometry.fits']
+
+# Weight files should have pixel values between 0 and 1. They must have the same dimensions as the images.
 weights = ['Sh2-157_F1_PixelMath_astrometry.weight.fits', 'Sh2-157_F2_PixelMath_astrometry.weight.fits']
 
 hdus_3D = [fits.open(fn)[0] for fn in fnames]
